@@ -6,6 +6,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+
+void quickSort(std::string [], int, int);
+
 using namespace std;
 
 int main()
@@ -23,11 +26,14 @@ int main()
            recordCount++;
            dataIn >> data;
        }
-       string datArr[recordCount]
+        string datArr[recordCount];
+        recordCount = 0;       
+        dataIn.clear();
+        dataIn.seekg(0, ios::beg);
    	while (!dataIn.eof())
 	{
 	   // Read in five data records and display them
-	   dataIn >> data;        // Record 1
+	   dataIn >> datArr[recordCount];        // Record 1
            /*
             *here we can process the input
             *insert or remove leading zeros
@@ -35,9 +41,11 @@ int main()
             * ?linked list we would need to decide on the data type
             * ?leading zeros would be strings 
             */
-	   cout   << data << endl;
+	   cout   << datArr[recordCount] << endl;
+           recordCount++;
 	}
-   // insert a blank line
+        quickSort(datArr,0,recordCount);
+        // insert a blank line
 	cout << endl;
    }
    // Close the file
@@ -46,13 +54,13 @@ int main()
    return 0;
 }
 
-void quickSort(int arr[], int left, int right) {
+void quickSort(string arr[], int left, int right) {
 
       int i = left, j = right;
 
-      int tmp;
+      string tmp;
 
-      int pivot = arr[(left + right) / 2];
+      string pivot = arr[(left + right) / 2];
 
  
 
