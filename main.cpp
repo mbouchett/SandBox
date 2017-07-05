@@ -7,7 +7,7 @@
 #include <fstream>
 #include <string>
 
-void quickSort(std::string [], int, int);
+void quickSort(int[], int, int);
 
 using namespace std;
 
@@ -26,25 +26,26 @@ int main()
            recordCount++;
            dataIn >> data;
        }
-        string datArr[recordCount];
+        int datArr[recordCount];
         recordCount = 0;       
         dataIn.clear();
         dataIn.seekg(0, ios::beg);
    	while (!dataIn.eof())
 	{
-	   // Read in five data records and display them
-	   dataIn >> datArr[recordCount];        // Record 1
-           /*
-            *here we can process the input
-            *insert or remove leading zeros
-            *and insert it into our data structure
-            * ?linked list we would need to decide on the data type
-            * ?leading zeros would be strings 
-            */
-	   cout   << datArr[recordCount] << endl;
-           recordCount++;
-	}
+            // Read in five data records and display them
+            dataIn >> data;        // Record 1
+            if(!dataIn.eof()){
+                datArr[recordCount] = stoi(data, nullptr, 10);    //convert it to an int
+                cout   << datArr[recordCount] << endl;
+                recordCount++;
+            }
+        }
+        
         quickSort(datArr,0,recordCount);
+        
+        for(int i = 0; i < recordCount; i++){
+            cout   << datArr[i] << endl;
+        }
         // insert a blank line
 	cout << endl;
    }
@@ -54,54 +55,28 @@ int main()
    return 0;
 }
 
-void quickSort(string arr[], int left, int right) {
-
+void quickSort(int arr[], int left, int right) {
       int i = left, j = right;
-
-      string tmp;
-
-      string pivot = arr[(left + right) / 2];
-
- 
-
+      int tmp;
+      int pivot = arr[(left + right) / 2];
       /* partition */
 
       while (i <= j) {
-
             while (arr[i] < pivot)
-
                   i++;
-
             while (arr[j] > pivot)
-
                   j--;
-
             if (i <= j) {
-
                   tmp = arr[i];
-
                   arr[i] = arr[j];
-
                   arr[j] = tmp;
-
                   i++;
-
                   j--;
-
             }
-
-      };
-
- 
-
+      }
       /* recursion */
-
       if (left < j)
-
             quickSort(arr, left, j);
-
       if (i < right)
-
             quickSort(arr, i, right);
-
 }
