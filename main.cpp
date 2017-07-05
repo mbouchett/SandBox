@@ -1,8 +1,3 @@
-// Lab 3 table.cpp
-// This program reads data from a file and 
-// prints it in a nicely aligned table.
-// Mark Bouchett
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -33,10 +28,9 @@ int main()
    	while (!dataIn.eof())
 	{
             // Read in five data records and display them
-            dataIn >> data;        // Record 1
+            dataIn >> data;        // Get a Record
             if(!dataIn.eof()){
-                datArr[recordCount] = stoi(data, nullptr, 10);    //convert it to an int
-                cout   << datArr[recordCount] << endl;
+                datArr[recordCount] = stoi(data, nullptr, 10);//convert it to an int
                 recordCount++;
             }
         }
@@ -46,12 +40,9 @@ int main()
         for(int i = 0; i < recordCount; i++){
             cout   << datArr[i] << endl;
         }
-        // insert a blank line
-	cout << endl;
    }
    // Close the file
    dataIn.close();
-  
    return 0;
 }
 
@@ -59,8 +50,8 @@ void quickSort(int arr[], int left, int right) {
       int i = left, j = right;
       int tmp;
       int pivot = arr[(left + right) / 2];
+      
       /* partition */
-
       while (i <= j) {
             while (arr[i] < pivot)
                   i++;
